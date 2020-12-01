@@ -1,7 +1,7 @@
 
 # Change to the path where OS is installed
 require 'C:/openstudio-2.9.1/Ruby/openstudio.rb'
-require 'F:/GitHub/openstudio-standards/lib/openstudio-standards.rb'
+require 'C:/Users/hlee9/Documents/GitHub/OpenStudio_related/openstudio-standards/lib/openstudio-standards.rb'
 
 require 'fileutils'
 require 'parallel'
