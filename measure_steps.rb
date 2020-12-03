@@ -98,7 +98,8 @@ module MeasureSteps
 
   arr_steps_flexibility = [
     # {"measure_dir_name"=>"dr_hvac","arguments"=>{}},
-    {"measure_dir_name"=>"DR_GTA","arguments"=>{}},
+    # {"measure_dir_name"=>"DR_GTA","arguments"=>{}},
+    {"measure_dir_name"=>"dr_precool_preheat","arguments"=>{}},
   ] + arr_steps_baseline
 
 

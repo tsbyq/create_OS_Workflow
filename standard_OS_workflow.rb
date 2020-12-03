@@ -37,8 +37,9 @@ def create_single_osm(building_type, vintage, climate_zone, dir_folder_working, 
   # Adjust model as needed
   puts '- ' * 50
   osm = loadOSM(dir_folder_old_osm)
-  # osm.getSimulationControl.setRunSimulationforSizingPeriods(false)
+  osm.getSimulationControl.setRunSimulationforSizingPeriods(false)
   osm.getSimulationControl.setRunSimulationforWeatherFileRunPeriods(true)
+  # osm.getSimulationControl.setRunSimulationforWeatherFileRunPeriods(false)
   osm.save(dir_folder_new_osm, true)
 
   # Move the files
@@ -89,10 +90,10 @@ end
 
 ################################################################################
 # Create a reference model
-dir_test = 'C:/Users/hlee9/Documents/GitHub/DOE_SDI/Energy_Flexibility/simulations/check_design_day'
+dir_test = 'C:/Users/hlee9/Documents/GitHub/DOE_SDI/Energy_Flexibility/simulations/med_2A_precool_preheat'
 dir_model, str_model_name = create_single_osm(
-  # building_type = 'MediumOfficeDetailed',
-  building_type = 'SmallOffice',
+  building_type = 'MediumOfficeDetailed',
+  # building_type = 'SmallOffice',
   vintage = '90.1-2010',
   climate_zone = 'ASHRAE 169-2006-2A',
   dir_folder_working = dir_test,
@@ -122,6 +123,6 @@ dir_flexible_osw = create_single_osw(
 
 # Run the osw(s)
 arr_osws = [dir_baseline_osw, dir_flexible_osw]
-# run_osws('os291', arr_osws, 2)
-run_single_osw('os291', dir_baseline_osw)
+run_osws('os291', arr_osws, 2)
+# run_single_osw('os291', dir_baseline_osw)
 # run_single_osw('os291', dir_flexible_osw)
