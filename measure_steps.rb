@@ -1,22 +1,6 @@
 module MeasureSteps
-    arr_steps_baseline = [
-    {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone Mean Air Temperature","key_value"=>"*","reporting_frequency"=>"timestep"}},
-    {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone Thermostat Heating Setpoint Temperature","key_value"=>"*","reporting_frequency"=>"timestep"}},
-    {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone Thermostat Cooling Setpoint Temperature","key_value"=>"*","reporting_frequency"=>"timestep"}},
-    {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone People Occupant Count","key_value"=>"*","reporting_frequency"=>"timestep"}},
-    {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Facility Total Electric Demand Power","key_value"=>"*","reporting_frequency"=>"timestep"}},
-    {"measure_dir_name"=>"AddMeter","arguments"=>{"meter_name"=>"Electricity:Facility","reporting_frequency"=>"timestep"}},
-    {"measure_dir_name"=>"AddMeter","arguments"=>{"meter_name"=>"Gas:Facility","reporting_frequency"=>"timestep"}},
-    {"measure_dir_name"=>"ExportVariabletoCSV","arguments"=>{"variable_name"=>"Zone Mean Air Temperature","reporting_frequency"=>"Zone Timestep"}},
-    {"measure_dir_name"=>"ExportVariabletoCSV","arguments"=>{"variable_name"=>"Zone Thermostat Heating Setpoint Temperature","reporting_frequency"=>"Zone Timestep"}},
-    {"measure_dir_name"=>"ExportVariabletoCSV","arguments"=>{"variable_name"=>"Zone Thermostat Cooling Setpoint Temperature","reporting_frequency"=>"Zone Timestep"}},
-    {"measure_dir_name"=>"ExportVariabletoCSV","arguments"=>{"variable_name"=>"Zone People Occupant Count","reporting_frequency"=>"Zone Timestep"}},
-    {"measure_dir_name"=>"ExportVariabletoCSV","arguments"=>{"variable_name"=>"Facility Total Electric Demand Power","reporting_frequency"=>"Zone Timestep"}},
-    {"measure_dir_name"=>"ExportMetertoCSV","arguments"=>{"meter_name"=>"Electricity:Facility","reporting_frequency"=>"Zone Timestep"}},
-    {"measure_dir_name"=>"ExportMetertoCSV","arguments"=>{"meter_name"=>"Gas:Facility","reporting_frequency"=>"Zone Timestep"}}
-  ]
 
-  arr_steps_synthetic_operation_data = [
+  ARR_STEPS_SYNTHETIC_OPERATION_DATA = [
     {"arguments"=> {},"measure_dir_name"=> "Occupancy_Simulator_Office"},
     {"arguments"=> {},"measure_dir_name"=> "create_lighting_schedule_from_occupant_count"},
     {"arguments"=> {},"measure_dir_name"=> "create_mels_schedule_from_occupant_count"},
@@ -96,17 +80,55 @@ module MeasureSteps
     {"measure_dir_name"=>"ExportMetertoCSV","arguments"=>{"meter_name"=>"Gas:Facility","reporting_frequency"=>"Zone Timestep"}}
   ]
 
-  arr_steps_flexibility = [
+  ARR_STEPS_BASELINE = [
+    {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone Mean Air Temperature","key_value"=>"*","reporting_frequency"=>"timestep"}},
+    {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone Thermostat Heating Setpoint Temperature","key_value"=>"*","reporting_frequency"=>"timestep"}},
+    {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone Thermostat Cooling Setpoint Temperature","key_value"=>"*","reporting_frequency"=>"timestep"}},
+    {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone People Occupant Count","key_value"=>"*","reporting_frequency"=>"timestep"}},
+    {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Facility Total Electric Demand Power","key_value"=>"*","reporting_frequency"=>"timestep"}},
+    {"measure_dir_name"=>"AddMeter","arguments"=>{"meter_name"=>"Electricity:Facility","reporting_frequency"=>"timestep"}},
+    {"measure_dir_name"=>"AddMeter","arguments"=>{"meter_name"=>"Gas:Facility","reporting_frequency"=>"timestep"}},
+    {"measure_dir_name"=>"ExportVariabletoCSV","arguments"=>{"variable_name"=>"Zone Mean Air Temperature","reporting_frequency"=>"Zone Timestep"}},
+    {"measure_dir_name"=>"ExportVariabletoCSV","arguments"=>{"variable_name"=>"Zone Thermostat Heating Setpoint Temperature","reporting_frequency"=>"Zone Timestep"}},
+    {"measure_dir_name"=>"ExportVariabletoCSV","arguments"=>{"variable_name"=>"Zone Thermostat Cooling Setpoint Temperature","reporting_frequency"=>"Zone Timestep"}},
+    {"measure_dir_name"=>"ExportVariabletoCSV","arguments"=>{"variable_name"=>"Zone People Occupant Count","reporting_frequency"=>"Zone Timestep"}},
+    {"measure_dir_name"=>"ExportVariabletoCSV","arguments"=>{"variable_name"=>"Facility Total Electric Demand Power","reporting_frequency"=>"Zone Timestep"}},
+    {"measure_dir_name"=>"ExportMetertoCSV","arguments"=>{"meter_name"=>"Electricity:Facility","reporting_frequency"=>"Zone Timestep"}},
+    {"measure_dir_name"=>"ExportMetertoCSV","arguments"=>{"meter_name"=>"Gas:Facility","reporting_frequency"=>"Zone Timestep"}}
+  ]
+
+
+  ARR_STEPS_FLEXIBILITY = [
     # {"measure_dir_name"=>"dr_hvac","arguments"=>{}},
     # {"measure_dir_name"=>"DR_GTA","arguments"=>{}},
     {"measure_dir_name"=>"dr_precool_preheat","arguments"=>{}},
-  ] + arr_steps_baseline
+  ] + ARR_STEPS_BASELINE
+
 
 
 
   STEP_OPTIONS = {
-    'synthetic operation data' => arr_steps_synthetic_operation_data,
-    'flexibility' => arr_steps_flexibility,
-    'baseline' => arr_steps_baseline,
+    'synthetic operation data' => ARR_STEPS_SYNTHETIC_OPERATION_DATA,
+    'flexibility' => ARR_STEPS_FLEXIBILITY,
+    'baseline' => ARR_STEPS_BASELINE,
   }
+
+
+  FLEXIBLE_MEASURES = {
+    "Pre-cooling & Pre-heating" => {
+        "measure_dir_name"=>"~Pre-cooling_heating for Specific Temperature Setpoints and Time Period",
+        "arguments"=>{"starttime"=>"11:00", "endtime"=>"14:59:00"}
+    },
+  }
+
+
+  def self.compose_precooling_heating_options(str_start, str_end)
+    return [
+      {
+        "measure_dir_name"=>"~Pre-cooling_heating for Specific Temperature Setpoints and Time Period",
+        "arguments"=>{"starttime"=>str_start, "endtime"=>str_end}
+      }
+    ] + ARR_STEPS_BASELINE
+  end
+
 end
