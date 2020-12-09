@@ -81,6 +81,11 @@ module MeasureSteps
   ]
 
   ARR_STEPS_BASELINE = [
+    {"arguments"=> {},"measure_dir_name"=> "Occupancy_Simulator_Office"},
+    {"arguments"=> {},"measure_dir_name"=> "create_lighting_schedule_from_occupant_count"},
+    {"arguments"=> {},"measure_dir_name"=> "create_mels_schedule_from_occupant_count"},
+    {"arguments"=> {},"measure_dir_name"=> "update_hvac_setpoint_schedule"},
+    {"arguments"=> {},"measure_dir_name"=> "add_demand_controlled_ventilation"},
     {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone Mean Air Temperature","key_value"=>"*","reporting_frequency"=>"timestep"}},
     {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone Thermostat Heating Setpoint Temperature","key_value"=>"*","reporting_frequency"=>"timestep"}},
     {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone Thermostat Cooling Setpoint Temperature","key_value"=>"*","reporting_frequency"=>"timestep"}},
