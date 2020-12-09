@@ -81,16 +81,20 @@ module MeasureSteps
   ]
 
   ARR_STEPS_BASELINE = [
-    {"arguments"=> {},"measure_dir_name"=> "Occupancy_Simulator_Office"},
+    {"arguments"=> {},"measure_dir_name"=> "Occupancy_Simulator_Office_fixed_seed"},
     {"arguments"=> {},"measure_dir_name"=> "create_lighting_schedule_from_occupant_count"},
     {"arguments"=> {},"measure_dir_name"=> "create_mels_schedule_from_occupant_count"},
     {"arguments"=> {},"measure_dir_name"=> "update_hvac_setpoint_schedule"},
     {"arguments"=> {},"measure_dir_name"=> "add_demand_controlled_ventilation"},
+    {"arguments"=> {},"measure_dir_name"=> "pmv_bcl"},
     {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone Mean Air Temperature","key_value"=>"*","reporting_frequency"=>"timestep"}},
     {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone Thermostat Heating Setpoint Temperature","key_value"=>"*","reporting_frequency"=>"timestep"}},
     {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone Thermostat Cooling Setpoint Temperature","key_value"=>"*","reporting_frequency"=>"timestep"}},
     {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone People Occupant Count","key_value"=>"*","reporting_frequency"=>"timestep"}},
     {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Facility Total Electric Demand Power","key_value"=>"*","reporting_frequency"=>"timestep"}},
+    {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone Thermal Comfort Fanger Model PMV","key_value"=>"*","reporting_frequency"=>"timestep"}},
+    {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone Thermal Comfort Fanger Model PPD","key_value"=>"*","reporting_frequency"=>"timestep"}},
+    {"measure_dir_name"=>"AddOutputVariable","arguments"=>{"variable_name"=>"Zone Operative Temperature","key_value"=>"*","reporting_frequency"=>"timestep"}},
     {"measure_dir_name"=>"AddMeter","arguments"=>{"meter_name"=>"Electricity:Facility","reporting_frequency"=>"timestep"}},
     {"measure_dir_name"=>"AddMeter","arguments"=>{"meter_name"=>"Gas:Facility","reporting_frequency"=>"timestep"}},
     {"measure_dir_name"=>"ExportVariabletoCSV","arguments"=>{"variable_name"=>"Zone Mean Air Temperature","reporting_frequency"=>"Zone Timestep"}},
@@ -98,6 +102,9 @@ module MeasureSteps
     {"measure_dir_name"=>"ExportVariabletoCSV","arguments"=>{"variable_name"=>"Zone Thermostat Cooling Setpoint Temperature","reporting_frequency"=>"Zone Timestep"}},
     {"measure_dir_name"=>"ExportVariabletoCSV","arguments"=>{"variable_name"=>"Zone People Occupant Count","reporting_frequency"=>"Zone Timestep"}},
     {"measure_dir_name"=>"ExportVariabletoCSV","arguments"=>{"variable_name"=>"Facility Total Electric Demand Power","reporting_frequency"=>"Zone Timestep"}},
+    {"measure_dir_name"=>"ExportVariabletoCSV","arguments"=>{"variable_name"=>"Zone Thermal Comfort Fanger Model PMV","reporting_frequency"=>"Zone Timestep"}},
+    {"measure_dir_name"=>"ExportVariabletoCSV","arguments"=>{"variable_name"=>"Zone Thermal Comfort Fanger Model PPD","reporting_frequency"=>"Zone Timestep"}},
+    {"measure_dir_name"=>"ExportVariabletoCSV","arguments"=>{"variable_name"=>"Zone Operative Temperature","reporting_frequency"=>"Zone Timestep"}},
     {"measure_dir_name"=>"ExportMetertoCSV","arguments"=>{"meter_name"=>"Electricity:Facility","reporting_frequency"=>"Zone Timestep"}},
     {"measure_dir_name"=>"ExportMetertoCSV","arguments"=>{"meter_name"=>"Gas:Facility","reporting_frequency"=>"Zone Timestep"}}
   ]
